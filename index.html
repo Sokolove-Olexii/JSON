@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studens</title>
+    <link rel="stylesheet" href="./style/style.css" />
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Форма для заповнення</h2>
+      <form id="studentForm" class="st-form">
+        <section class="section">
+          <!-- "required" can be set -->
+          <input type="text" id="firstName" placeholder="Ім'я" />
+          <input type="text" id="lastName" placeholder="Прізвище" />
+          <input type="number" id="age" placeholder="Вік" />
+          <input type="text" id="course" placeholder="Курс" />
+          <input type="text" id="faculty" placeholder="Факультет" />
+          <input type="text" id="subjects" placeholder="Предмет" />
+        </section>
+
+        <button type="submit" id="btn">Додати студента</button>
+      </form>
+    </div>
+
+    <h2>Список студентів</h2>
+    <table id="studentTable">
+      <thead>
+        <tr>
+          <th>Ім'я</th>
+          <th>Прізвище</th>
+          <th>Вік</th>
+          <th>Курс</th>
+          <th>Факультет</th>
+          <th>Предмет</th>
+          <th>Зміни</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
