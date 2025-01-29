@@ -3,28 +3,44 @@ const studentTable = document
   .getElementById("studentTable")
   .querySelector("tbody");
 
-let students = [];
+let students = JSON.parse(localStorage.getItem("students")) || [];
+
+updateTable();
 
 studentForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const firstName = document.getElementById("firstName").value;
-  const lastName = document.getElementById("lastName").value;
-  const age = document.getElementById("age").value;
-  const course = document.getElementById("course").value;
-  const faculty = document.getElementById("faculty").value;
-  const subjects = document.getElementById("subjects").value.split(",");
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+  const age = document.getElementById("age").value.trim();
+  const course = document.getElementById("course").value.trim();
+  const faculty = document.getElementById("faculty").value.trim();
+  const subjects = document.getElementById("subjects").value.trim();
 
-  if (!firstName || !lastName || !age || !course || !faculty) {
+  if (!firstName || !lastName || !age || !course || !faculty || !subjects) {
     alert("Заповніть всі поля!");
     return;
   }
 
-  const student = { firstName, lastName, age, course, faculty, subjects };
+  const student = {
+    firstName,
+    lastName,
+    age,
+    course,
+    faculty,
+    subjects: subjects.split(","),
+  };
+
   students.push(student);
+  saveStudents();
   updateTable();
 
   studentForm.reset();
+
+  console.log(students);
+  //stringify massive
+  const studentsJson = JSON.stringify(students);
+  console.log(studentsJson);
 });
 
 function updateTable() {
@@ -50,8 +66,13 @@ function updateTable() {
   });
 }
 
+function saveStudents() {
+  localStorage.setItem("students", JSON.stringify(students));
+}
+
 function deleteStudent(index) {
   students.splice(index, 1);
+  saveStudents();
   updateTable();
 }
 
